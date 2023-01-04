@@ -1,0 +1,24 @@
+*&---------------------------------------------------------------------*
+*& Report  ZZARYAN_INTERNAL_TABLE
+*&
+*&---------------------------------------------------------------------*
+*&
+*&
+*&---------------------------------------------------------------------*
+REPORT ZZARYAN_INTERNAL_TABLE.
+types: begin of ty_mara,
+       matnr type matnr,
+       ersda type ersda,
+       matkl type matkl,
+    end of ty_mara.
+
+DATA : it_mara type TABLE OF ty_mara,
+       wa_mara type ty_mara.
+
+PARAMETERS p_matkl type matkl.
+
+select matnr ersda matkl from mara into table it_mara where matkl = p_matkl.
+
+loop at it_mara into wa_mara.
+  write : / wa_mara-matnr, wa_mara-ersda, wa_mara-matkl.
+ENDLOOP.
